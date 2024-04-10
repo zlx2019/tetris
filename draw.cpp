@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-
 #include "draw.h"
 #include "terminal.h"
 

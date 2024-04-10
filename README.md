@@ -5,7 +5,10 @@ A tetris game in terminal by C++ write
 ## 进度
 - 01已完成
 - 02已完成
-- 03
+- 03已完成
+- 04已完成
+- 4.1 TODO
+- 05
 
 ## ANSI转义码
 
