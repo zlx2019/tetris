@@ -7,7 +7,7 @@ A tetris game in terminal by C++ write
 - 02已完成
 - 03已完成
 - 04已完成
-- 4.1 TODO
+- 4.1
 - 05
 
 ## ANSI转义码

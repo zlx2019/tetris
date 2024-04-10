@@ -1,7 +1,7 @@
 ########## CMake 编译配置 ##########
 
 # 设置CMake最低版本
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.26)
 
 # 项目名
 project(Tetris)
