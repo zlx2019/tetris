@@ -1,4 +1,6 @@
 #include <chrono>
+#include <locale>
+#include <codecvt>
 #include "utils.h"
 
 /**
@@ -28,4 +30,14 @@ int util::fps(){
         start = end;
     }
     return fps;
+}
+
+/**
+ * 将 u32string 类型转换为 string
+ * 
+ * @s: 要转换的u32string
+ */
+std::string util::u32str_to_str(std::u32string s){
+    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> convert;
+    return convert.to_bytes(s);
 }

@@ -1,7 +1,8 @@
 #include <iostream>
-#include <vector>
+#include <string>
 #include "draw.h"
 #include "terminal.h"
+#include "utils.h"
 
 /**
  * 游戏窗口绘制相关实现
@@ -17,9 +18,14 @@ inline int y2block(int col){
     return 2 * col - 1;
 }
 
-
 namespace dw{
-
+    // 定义一些游戏界面样式
+    const std::u32string DefaultStyle = U"┌┐└┘─│";
+    const std::u32string BoldStyle = U"┏┓┗┛━┃";
+    const std::u32string DoubleLineStyle = U"╔╗╚╝═║";
+    const std::u32string RoundStyle = U"╭╮╰╯─│";
+    // 当前使用的样式
+    const std::u32string CurStyle = RoundStyle;
 
     /**
      * 在终端界面中绘制游戏界面
@@ -49,45 +55,52 @@ namespace dw{
      */
     void draw_rec(int x,int y, int width, int height, std::string title){
         // 注意: 界面的第一行|最后一行|第一列|最后一列，这些都需要特殊处理
-        // 绘制图形
+
+        // 获取要使用的界面样式
+        auto left_top = util::u32str_to_str({CurStyle[0]});  // ┏
+        auto right_top = util::u32str_to_str({CurStyle[1]}); // ┓
+        auto line = util::u32str_to_str({CurStyle[4]});      // ━
+        auto vertical = util::u32str_to_str({CurStyle[5]});  // ┃
+        auto left_down = util::u32str_to_str({CurStyle[2]}); // ┗
+        auto right_down = util::u32str_to_str({CurStyle[3]});// ┛
+
+        // 开始绘制图形
         for (int row = 0; row < height; ++row){
             // 移动光标到每一行开头.
             tc::move_to(x + row, y2block(y)); 
             for (int col = 0; col < width; ++col){
                 if (row == 0){ // 绘制界面第一行
                     if (col == 0){          
-                        // 首行 && 首列
-                        std::cout << " ┏";
+                        // 首行 && 首列 
+                        std::cout << " " << left_top;
                     }else if (col == width - 1){
                         // 首行 && 末列
-                        std::cout << "┓";
+                        std::cout << right_top;
                     }
                     else
                     {
                         // 首行其他列
-                        std::cout << "━━";
+                        std::cout << line << line;
                     }
                 }else if (row == height - 1){ // 绘制界面最后一行
                     if (col == 0){          
                         // 末行 && 首列
-                        std::cout << " ┗";
+                        std::cout << " " << left_down;
                     }else if (col == width - 1){
                         // 末行 && 未列
-                        std::cout << "┛";
-                    }
-                    else
-                    {
+                        std::cout << right_down;
+                    }else{
                         // 末行其他列
-                        std::cout << "━━";
+                        std::cout << line << line;
                     }
                 }else{ // 其他普通行
                     if (col == 0){
                         // 其他行 && 首列
-                        std::cout << " ┃";
+                        std::cout << " " << vertical;
                     }else if (col == width - 1){
                         // 其他行 || 未列
-                        std::cout << "┃";
-                    }else {
+                        std::cout << vertical;
+                    }else{
                         // 其他列
                         std::cout << "  ";
                     }
