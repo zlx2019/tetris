@@ -4,7 +4,8 @@ A tetris game in terminal by C++ write
 
 ## 进度
 - 01已完成
-- 02 
+- 02已完成
+- 03
 
 ## ANSI转义码
 

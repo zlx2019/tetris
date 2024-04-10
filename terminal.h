@@ -1,13 +1,15 @@
+#pragma once
+
 /**
  * terminal control - 终端控制相关函数声明
  */
 
 namespace tc{
-
     // ============= 移动光标相关 ================
-    
     // 将光标移动到指定的行/列位置。
     void move_to(int row, int col);
+    // 将光标移动到指定的行/列位置(以一个方块为基本单位，一个方块占2个col)
+    void move_to_block(int row, int col);
     // 将光标向上移动n行
     void move_up(int n);
     // 将光标向下移动n行
@@ -26,7 +28,6 @@ namespace tc{
     void hide_cursor();
     // 显示光标
     void show_cursor();
-
     // ==========================================
 
     // 设置字体颜色(前景色)

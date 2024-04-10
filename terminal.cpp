@@ -17,10 +17,19 @@
  *   转义码格式: `\033[行;列H`
  * 
  * @row: 要移动到的行
- * @column: 要移动到的列
+ * @col: 要移动到的列
  */
-void tc::move_to(int row, int column){
-    std::cout << ESC << row << SEP << column << "H";
+void tc::move_to(int row, int col){
+    std::cout << ESC << row << SEP << col << "H";
+}
+
+/**
+ * 将光标移动到指定的行/列位置(以一个方块为基本单位，一个方块占2个col)
+ * @row: 要移动到的行
+ * @col: 要移动到的游戏块位置
+ */
+void tc::move_to_block(int row, int col){
+    std::cout << ESC << row << SEP << 2 * col - 1 << "H";
 }
 
 /**
@@ -69,7 +78,7 @@ void tc::move_next(int n){
  * 
  * @n: 移动的行数 
  */
-void tc::move_next(int n){
+void tc::move_prev(int n){
     std::cout << ESC << n << "F";
 }
 

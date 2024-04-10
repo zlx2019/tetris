@@ -8,7 +8,6 @@ project(Tetris)
 
 # 设置要使用的C++标准
 set(CXX_STANDARD 20)
-
 # 扫描 . 目录下的所有源文件列表，放到src变量中
 aux_source_directory(. src)
 
