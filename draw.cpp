@@ -1,6 +1,5 @@
-#include <iostream>
-#include <string>
 #include "draw.h"
+#include "define.h"
 #include "terminal.h"
 #include "utils.h"
 
@@ -10,13 +9,6 @@
 
 
 
-/**
- * 将指定的 Y 轴坐标换算为 游戏中的块位置.
- * 一个方块，占两个单元，也就是两列位置，所以需要换算一下。
- */
-inline int y2block(int col){
-    return 2 * col - 1;
-}
 
 namespace dw{
     // 定义一些游戏界面样式
@@ -67,7 +59,7 @@ namespace dw{
         // 开始绘制图形
         for (int row = 0; row < height; ++row){
             // 移动光标到每一行开头.
-            tc::move_to(x + row, y2block(y)); 
+            tc::move_to(x + row, util::col2block(y)); 
             for (int col = 0; col < width; ++col){
                 if (row == 0){ // 绘制界面第一行
                     if (col == 0){          
@@ -110,7 +102,7 @@ namespace dw{
         // 设置窗口标题
         // 根据标题长度以及图像的宽度计算合适的位置
         // (图形宽度 * 2 - 标题长度) / 2
-        int titleY = y2block(y) + (width * 2 - title.length()) / 2;
+        int titleY = util::col2block(y) + (width * 2 - title.length()) / 2;
         tc::move_to(x, titleY);
         std::cout << title;
     }

@@ -1,5 +1,5 @@
-#include <iostream>
 #include "terminal.h"
+#include "define.h"
 
 /**
  * 终端控制相关函数实现
